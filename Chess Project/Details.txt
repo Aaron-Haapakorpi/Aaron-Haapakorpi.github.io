@@ -1,0 +1,1 @@
+This is a 2nd year university project aiming to create a working chess program and chess engine in C++. 

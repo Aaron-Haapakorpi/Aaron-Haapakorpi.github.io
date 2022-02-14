@@ -1,0 +1,8 @@
+﻿  asema.cpp
+C:\Users\aaron\Downloads\Shakkiprojekti.zip (1)\Shakkiprojekti\shakki\asema.cpp(942,20): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\aaron\Downloads\Shakkiprojekti.zip (1)\Shakkiprojekti\shakki\asema.cpp(1336,6): warning C4101:  'kingY': unreferenced local variable
+  kayttoliittyma.cpp
+  Generating Code...
+C:\Users\aaron\Downloads\Shakkiprojekti.zip (1)\Shakkiprojekti\shakki\asema.cpp(1335,6): warning C4101:  'kingX': unreferenced local variable
+  LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
+  shakki.vcxproj -> C:\Users\aaron\Downloads\Shakkiprojekti.zip (1)\Shakkiprojekti\Release\shakki.exe

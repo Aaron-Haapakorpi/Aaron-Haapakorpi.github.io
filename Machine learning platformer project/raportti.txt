@@ -1,0 +1,154 @@
+Päivitykset 4.5.2021 & 5.5.2021
+
+- Korjattu ongelma pienen fpsn kanssa, pelaajalla oli mahdollista hypätä useita kertoja jos fps oli hyvin pieni, sillä pelaaja liikkui niin vähän, että se oli vielä "maassa" seuraavalla framella,
+eikä boolean hasPlayerJumped asetettu oikeassa kohdassa.
+
+- Pelin on kuitenkin tarkoitus pyöriä n.60 fps, sillä fps vaikuttaa fysiikoihin, fysiikat on custom ja ajavat update-loopissa verlet integraatiolla, error kasvaa fpsn laskiessa (hitaasti).
+
+- Korjattu ongelma, jossa negativiinen y-nopeus vaikutti pelaajan hyppyyn, jos se hyppäsi sillä framella kun se laskeutui. toisessa projektissa koodia oli muutettu että esim. tuplahypyssä
+hyppyyn vaikuttaa myös muut voimat. Tämä ei tässä tilanteessa ollut haluttua toimintaa. huom. vain hippa-agentteja opetettu lisää muutoksen jälkeen (10h+). muut agentit toimivat hyvin
+muutoksen jälkeenkin.
+
+- varsinkin pakenija-agentti muuttanut strategiaansa huomattavasti. Nyt se pyrkii huijaamaan jahtaaja-agenttia tekemään liikkeitä, jotka eivät johda sen luokse. agentteja voi huijata tällä tavalla,
+koska niillä ei ole muistia tai tietoa niiden aikaisemmista liikkeistä tai observaatioista. Tätä voitaisiin tietenkin yrittää muuttaa, mutta jo opetetulle agentille ei tällaista voi lisätä.
+Agenttien huijaaminen on omakin päästrategiani niitä vastaan, sillä niiden liikkeet ovat usein liian tarkkoja, että ne saisi kiinni pelkästään seuraamalla. Huijaaminenkaan ei tosin ole helppoa.
+
+Projektin alkuperäinen tarkoitus oli opettaa agentti navigoimaan simppeliä tasohyppelypeliä. Projektin edetessä, sain muitakin ideoita, joten loin monia erilaisia agentteja, joilla on eri päämäärät.
+Listaan luodut agentit, joiden toimintaa voi tarkkailla projektissa.
+
+Agenttien oppimisessa ei ollut erityisiä ongelmia. Suurin ongelma oli, kun agentilla tuli vastaan tilanne, missä sen piti mennä useisiin eri suuntiin väistäkseen este. Jossain määrin tätä voitiin
+väistää curiosityn lisäämisellä ja muilla muutoksilla, mutta pysyi kuitenkin vaikeana esteenä agentille (varsinkin, jos agenttia ei ole opetettu väistämään kyseistä estettä.)
+
+Projektiin käytetty aikaa ei ole mitattu, mutta arvioituna 60+ tuntia käytetty muuhun kuin itse agenttien opetukseen (parametrejen muuttaminen, koodin kirjoittaminen, eri agentit ja ympäristöt yms).
+Kaikkien eri agentti versioiden opetukseen käytetty noin 50 tuntia (yksi core).
+Pääagenttia eli tasohyppely-hippa agenttia opetettu yhdellä corella noin 20 tuntia (ei yhtäjaksoisesti) (+ lisää päivityksessä). 
+Eniten aikaa on käytetty hippa agentteihin.
+
+Kaikki agenttien observaatiot on normalisoitu. Agentit tekevät liikkumispäätöksen joka 5 framea (eli 10 päätöstä sekunnissa), jotta opetus ei olisi liian hidasta.
+
+Agentit listattu tärkeimmästä ja eniten aikaa käytetystä, vähiten tärkeään ja vähiten aikaa käytettyyn. Pääpainotus on hippa-agenteissa.
+
+Käytetyt agentit:
+
+1. tasohyppely-hippa agentit, jossa kaksi agenttia oppii pelaamaan hippaa yhdessä ympäristössä toista vastaan. Agentit ovat muuten samoja, mutta niillä on oma päämääränsä ja oppivat erikseen toisiaan
+vastaan. Toinen agentti jahtaa toista agenttia ja yrittää saada tämän kiinni, ja toinen agentti yrittää paeta mahdollisimman kauan. Agenteilla on vähän observaatioita, ajatuksena oli helpompi oppiminen.
+
+Observaatiot:
+13 raycastiä(tunnistavat kävelyalueet ja vastustaja-agentin), johon on käytetty mlagentsin rayperceptor2D sensoria
+agentin nopeusvektori
+vastustajan nopeusvektori
+vektori vastustajaan
+
+Jahtaaja agentti saa rewardia jos koskee toiseen agenttiin tietyllä aikavälillä. Rewardin määrä on suhteessa miten nopeasti agentti koski toiseen agenttiin.
+Pakenija agentti saa negatiivista rewardia jos toinen agentti koskaa siihen tietyllä aikavälillä. Negatiivisen rewardin määrä riippuu, kuinka kauan agentti onnistui väistämään toista agenttia
+
+Agentti on opetettu käyttäen ppo-algoritmia ja self-playta
+
+Opetettu noin 20 tuntia, aikarajaa lisätty 50 sekuntiin agenttien oppiessa.
+
+2. hippa-ennustaja agentti, joka ennustaa sen hetkisen roundin voittajan (float arvo)ympäristötietojen perusteella. Agentin opettaminen on huomattavasti vaikeampaa kuin muiden agenttien, 
+sillä sen pitää tietää etukäteen, kumpi agentti voittaa (muuten ennustus olisi erittäin hidasta, agentin pitäisi tehdä yksi arvaus ja odottaa pelin loppumista). 
+Ensimmäiseksi annetaan tasohyppely-hippa agenttien pelata toisiaan vastaan, ja tallennetaan ympäristötiedot. Kun pelejä on tallennettu tietty määrä, ympäristötiedot tallennetaan tiedostoon,
+jota voidaan käyttää myöhemmin opetuksessa. Pelejä kerättiin noin 1000, ja tietoja kerättiin ympäristöstä noin 10 framen välein (ehkä noin 50 tuhatta framea). Opetattaessa valitaan satunnainen peli siten, 
+että 50% peleistä on voitto ja 50% häviö ja satunnainen frame joltain prosenttiväliltä (30% ensimmäisiä framejä ei oteta huomioon, mahdoton ennustaa aikaisin pelissä). 
+Sitten muutetaan sen framen kuvadata textureksi ja laitetaan se render textureen jota mlagentsin RenderTextureSensor voi käyttää.
+
+Observaatiot:
+42x25 kokoinen harmaasävy kuva. Agenttien ja ympäristön grafiikat on pelkistetty ennustaja-agenttia varten.
+kulunut aika jaettuna maksimiajalla
+
+Agentti saa rewardia riippuen ennustuksen etäisyydestä oikeaan arvaukseen (1 = jahtaaja voittaa, -1 on pakenija voittaa). 
+Esim. voittaja on 1, arvaus on 0.5. Etäisyys nollasta on 0.5 positiiviseen suuntaan, joten agentti saa 0.5 rewardia. Esim 2. voittaja on 1, arvaus on -0.4.
+Etäisyys on 0.4 negatiiviseen suuntaan, joten agentti saa -0.4 rewardia.
+
+Agentti on opetettu käyttäen sac-algoritmia, sillä se on näyte-tehokas. Käytettävää dataa on vain rajoitettu määrä, joten tämä on tärkeää.
+
+Käytetty simple visual encoding type n.79% accuracy, resnetillä saatu n. 84% oikein testidatasta, todennäköisesti paremmin ymmärtää agenttien sijainnit, valitettavasti sitä ei voitu käyttää, 
+sillä inference ei toiminut modelilla, ehkä jokin versio-ongelma (muutamalla muullakin foorumilla samantapainen ongelma).
+
+opetettu noin n.45 min aikarajalla 20 sekuntia (n.80k steppiä, samaa dataa ei haluta käyttää liian kauan).
+
+3. tasohyppely agentti, joka oppii hyppimään satunnaisesti asetettuja esteitä pitkin
+
+Observaatiot:
+20 raycast observaatiota (tunnistavat kävelyalueet), johon on käytetty mlagentsin rayperceptor2D sensoria
+pelaajan nopeusvektori
+
+Agentti saa rewardia edetessä yhden unity-yksikön eteenpäin ja pienen negatiivisen rewardin pudotessa.
+
+Agentti on opetettu käyttäen ppo-algoritmia.
+
+opetettu noin tunnin.
+
+4. tasohyppely agentti, joka oppii menemään eri kohteisiin. Agenttia opetettiin 3-4ssä eri ympäristössä yhtäaikaisesti, jotta agentti ei unohda miten kukin ympäristö voidaan päihittää,
+ja jotta agentti oppii menemään moneen eri kohteeseen. ympäristöissä oli myös eri alkamiskohtia sekä eri kohteita, joita vaihdettiin tietyin väliajoin. 
+Tuloksena on agentti, joka pystyy menemään pelaajan asettamaan kohteeseen, väistäen esteitä yms.
+
+Observaatiot:
+20 raycast observaatiota (tunnistavat kävelyalueet), johon on käytetty mlagentsin rayperceptor2D sensoria
+pelaajan nopeusvektori
+missä kulmassa pelaajan suhteen kohde on
+vektori kohteeseen
+
+Agentti saa rewardin, jos pääsee kohteeseen. Agentti saa negatiivista rewardia, joka frame, sekä pudotessa alas pelialueelta.
+
+Agentti on opetettu käyttäen ppo-algoritmia ja curiosityä.
+
+opetettu noin 2 tuntia.
+
+Testatut agentit (ei mukana projektissa):
+
+1. Control the flag tasohyppely-agentti, missä agentin tulee hakea vastustajan lippu ja tulla takaisin oman lipun luokse ilman että toinen agentti saa lippua takaisin.
+Lippuja on kummallakin pelaajalla 2. Vaikka agentti oppi, agentin toiminta ei ollut kiinnostavaa. Peli oli hieman tylsä. 3D ympäristössä peli olisi kiinnostavampi, ja/tai jos siinä olisi muita mekaniikoita.
+
+Observaatiot:
+raycast observaatiota, tunnistavat oman lipun, jos agentila on lippu, vastustajan lipun, jos vastustajalla on lippu
+agentin nopeusvektori
+vihollisagentin nopeusvektori
+vektori agentin lippualueisiin
+vektori vihollisagentin lippualueisiin
+vektori agentin lippuihin
+vektori vihollisagentin lippuihin
+vektori vihollisagenttiin
+boolean onko agentilla lippu
+boolean onko vihollisella lippu
+float oman tiimin pisteet
+float vihollistiimin pisteet
+
+käyttää self-playtä ja ppo-algoritmia
+
+
+2. Control the flag tiimi tasohyppely-agentti, missä agentin tulee hakea vastustajan lippu ja tulla takaisin oman lipun luokse ilman että toinen agentti saa lippua takaisin.
+Lippuja on kummallakin tiimillä 2 ja kussakin tiimissä 2 pelaajaa. Ajatus oli, että peli olisi kiinnostavampi jos pelaajia olisi enemmän. En ollut kuitenkaan tyytyväinen pelin kulkuun. 
+Tämän jälkeen keksin, että hippa olisi tasohyppely-ympäristössä kinnostavampi ja helpompi agenteille oppia.
+
+Observaatiot:
+raycast observaatiota, tunnistavat oman lipun, jos agentila on lippu, vastustajan lipun, jos vastustajalla on lippu
+agentin nopeusvektori
+vihollisagentin nopeusvektori
+vektori agentin lippualueisiin
+vektori vihollisagentin lippualueisiin
+vektori agentin lippuihin
+vektori vihollisagentin lippuihin
+vektori vihollisagenttiin
+boolean onko agentilla lippu
+boolean onko vihollisella lippu
+float oman tiimin pisteet
+float vihollistiimin pisteet
+
+käyttää self-playtä ja ma-poca-algoritmia
+
+
+
+paranneltavaa:
+Muutama pieni bugi vaikutti todennäköisesti negatiivisesti agenttien oppimiseen, vaikka ne lopuksi oppivatkin. 
+Bugeihin sisältyi:
+1. Agenttien pääsy seinien sisälle (ongelma collision checkeissä, ei projektin pääpointti ja lähde epäselvä, joten ei korjattu, tätä estettiin antamalla agentille negatiivinen reward)
+
+2. Pelaajan kääntäminen käänsi myös agentin raycasteja eli samat raycastit näyttivät eri informaatiota.
+Uskon, että, varsinkin pelaajan kääntäminen heikensi agentin oppimisnopeutta. Huomasin bugin vasta projektin loppuvaiheessa, kun agentit olivat jo oppineet hyvin pitkälle.
+Hippa-agenttia ja loputonta tasohyppelyagenttia opetettiin lisää korjatuilla raycasteillä
+
+3. Resnet toimi vain opetellessa agenttia, käyttäessä modelia tuli erroreita. Ehkä jokin versio-ongelma, vaikea selvittää.
+
+

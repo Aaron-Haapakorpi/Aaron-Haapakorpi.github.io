@@ -1,0 +1,6 @@
+﻿  asema.cpp
+C:\Users\aaron\Downloads\Chess-master\Shakkiprojekti\shakki\asema.cpp(874,6): warning C4101:  'kingY': unreferenced local variable
+C:\Users\aaron\Downloads\Chess-master\Shakkiprojekti\shakki\asema.cpp(873,6): warning C4101:  'kingX': unreferenced local variable
+LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/PROFILE' specification
+asema.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:REF' specification
+  shakki.vcxproj -> C:\Users\aaron\Downloads\Chess-master\Shakkiprojekti\Debug\shakki.exe

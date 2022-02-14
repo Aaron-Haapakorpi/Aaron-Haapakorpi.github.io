@@ -1,0 +1,85 @@
+This is a 3rd year University project with the aim to utilize machine learning to play a simple game. The original file was translated from finnish with a program, so there may be minor errors.
+
+The original purpose of the project was to teach an agent to navigate a simple platform game. As the project progressed, I got other ideas, so I created many different agents with different goals.
+I list the agents I created, whose activities can be observed in the project.
+
+There were no particular problems in the learning of the agents. The main problem was when the agent encountered a situation where it had to go in several different directions to avoid an obstacle. To some extent this could be
+avoided by increasing curiosity and other modifications, but remained a difficult obstacle for the agent (especially if the agent had not been trained to avoid the obstacle in question).
+
+Time spent on the project was not measured, but an estimated 60+ hours were spent on other things than teaching the agents themselves (changing parameters, writing code, different agents and environments, etc.).
+Approximately 50 hours spent on teaching all the different agent versions (one core).
+The main agent, the level-hopping agent, taught on one core for about 20 hours (not continuously) (+ more in the update). 
+Most time spent on hippa agents.
+
+All agent observations have been normalized. Agents make a move decision every 5 frames (i.e. 10 decisions per second) to avoid teaching being too slow.
+
+Agents are ranked from most important and most time spent, to least important and least time spent. The main emphasis is on tagagents.
+
+Agents used:
+
+1. level-hopping tag agents, where two agents learn to play tag in one environment against another. The agents are otherwise the same, but they have their own goals and learn separately from each other.
+against each other. One agent chases the other agent and tries to catch him, while the other agent tries to escape for as long as possible. The agents have little observational skills, the idea was to make learning easier.
+
+Observations:
+13 raycasts(detecting walking areas and opponent agent) using the mlagents rayperceptor2D sensor
+agent velocity vector
+adversary velocity vector
+vector to the adversary
+
+The chaser agent gets a reward if it touches another agent in a given time interval. The amount of reward is proportional to how fast the agent touched the other agent.
+A fleeing agent receives a negative reward if the other agent touches it in a given time interval. The amount of negative reward depends on how long the agent managed to evade the other agent
+
+The agents are trained primarily using the Proximal Policy Optimization algorithm and self-play.
+
+Taught for about 20 hours, time limit increased to 50 seconds for learning agents.
+
+2. tag-predictor agent that predicts the winner of the current round based on (float value) environmental data. This agent is significantly harder to teach than other agents, 
+because it needs to know in advance which agent will win (otherwise prediction would be very slow, the agent would have to make one guess and wait for the game to end). 
+The first step is to let the platform-hopping agents play against each other, and record the environment data. After a certain number of games have been saved, the environment data is saved to a file,
+which can be used later for teaching purposes. About 1000 games were collected, and data were collected on the environment every 10 frames or so (perhaps about 50 thousand frames). A random game is selected for teaching in this way, 
+50% of the games are wins and 50% are losses and a random frame at some percentage interval (30% of the first frames are ignored, impossible to predict early in the game). 
+Then convert that frame to a texture and put it into a render texture that can be used by the mlagents RenderTextureSensor.
+
+Observations:
+42x25 size grayscale image. The agent and environment graphics are reduced for the predictor agent.
+elapsed time divided by maximum time
+
+The agent receives a reward depending on the distance of the prediction to the correct guess (1 = chaser wins, -1 is a fugitive wins). 
+For example, the winner is 1, the guess is 0.5. The distance from zero is 0.5 in the positive direction, so the agent gets 0.5 reward. Example 2. winner is 1, guess is -0.4.
+The distance is 0.4 in the negative direction, so the agent gets -0.4 reward.
+
+The agent is trained using the sac algorithm because it is sample-efficient. There is only a limited amount of data available, so this is important.
+
+Used simple visual encoding type with n.79% accuracy, reset yielded n. 84% correct test data, probably to better understand agent locations, unfortunately it could not be used, 
+because inference did not work with the model, maybe some version problem (some other forums have a similar problem).
+
+Learned about 45 min with a time limit of 20 seconds (about 80k steps, don't want to use the same data for too long).
+
+3. platform jumping agent that learns to jump along randomly placed obstacles
+
+Observations:
+20 raycast observations (identifying walking areas) using the mlagents rayperceptor2D sensor
+player's velocity vector
+
+The agent receives a reward for advancing one unit of unity forward and a small negative reward for falling.
+
+The agent is trained using the ppo algorithm.
+
+Learned in about an hour.
+
+4. level hopping agent that learns to go to different destinations. The agent was taught in 3-4 different environments simultaneously so that the agent does not forget how to defeat each environment,
+The environments also had different starting points and different destinations, which were changed at intervals. 
+The result is an agent that can go to the destination set by the player, dodging obstacles, etc.
+
+Observations:
+20 raycast observations (identifying walking areas) using the mlagents rayperceptor2D sensor
+player's velocity vector
+angle of the player with respect to the target
+vector to the target
+
+The agent gets a reward if he reaches the target. The agent receives a negative reward, every frame, as well as for dropping down from the play area.
+
+The agent is learned using the ppo algorithm and curiosity.
+
+Learned in about 2 hours.
+

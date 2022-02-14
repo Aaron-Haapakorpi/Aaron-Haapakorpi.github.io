@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0aa51feb3ffddf438f438f184a7a8bf, type: 3}
+  m_Name: PurchasePool1
+  m_EditorClassIdentifier: 
+  purchasePool:
+  - {fileID: 11400000, guid: 78547223e1957f64a9beb74201cbd077, type: 2}
+  - {fileID: 11400000, guid: 99f69b2ef4c03064fa25e631e096e38e, type: 2}
+  - {fileID: 11400000, guid: 4c5c7d2c8289e1243bdb03f3907cf09e, type: 2}
+  currentPurchasePool: []
