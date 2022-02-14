@@ -1,0 +1,63 @@
+Description:
+
+The tool is a dialogue editor created with Unity's EditorWindow class and using GUILayout
+and EditorGUILayout classes to create UI functionality. The editor is packaged in unitypackage format.
+The package can be accessed from the Assets/Import Package/Custom Package menu. The editor is made in Unity
+version 2020.1.8f1, but the editor should work with other versions as well and in that version there were some problems.
+(Unity window layout breaks sometimes, etc.).
+
+Usage:
+
+The tool window can be opened from the Tools/Dialogue Editor Menu (Tools on the left side of the Window Menu).
+When the window is opened, no dialogue or characters have been created yet. A new 'character' can be created by typing.
+in the empty text box on the left and press the 'NEW' button. Dialogue for a character 
+can be created in the bottom right-hand corner by entering a tag and pressing 'Create New Object'.
+The script will automatically select the created character and dialogue.
+
+The dialogue can be edited by selecting the desired dialog, adding the desired language and typing 
+in the text field. Text fields can be added and removed if desired. You can also delete a dialogue by
+button next to the dialogue. Characters cannot be deleted in a dialogue, as this is a major change and if
+if you accidentally delete a character, you can lose a lot of data. You can delete a character by deleting the character
+folder in the Assets/Dialogue folder.
+
+Technical implementation:
+
+As mentioned earlier, the window itself is implemented with the EditorWindow, GUILayout, and EditorGUILayout classes. 
+ScriptableObjects are used to store the dialogue. When creating a dialogue for a character,
+an instance of DialogueObject is created (which is a ScriptableObject), the desired information is set for it, 
+and and an asset is created for it in a folder named after the character. When creating the character, only an empty folder is
+created for the character; the character itself does not store any data. When editing a dialogue, you edit the object directly,
+setting it to be saved, and when the dialogue is closed, AssetDatabase.SaveAssets() is called.
+
+On opening the window, the script fetches the dialogues already created and saves the references to lists (each
+character has its own list). As the user does things in the window, the script changes the character and dialogue indexes
+depending on what is being edited. The script also darkens the selected character and dialogue to know
+the target of the editing.
+
+Things to improve:
+
+Character names cannot currently be changed. Adding them would not be particularly difficult, but
+it could take some time to change the name, as the name of each character's dialogue, etc. would have to be changed.
+
+Dialogues cannot currently be linked to each other. The editor is not intended for this situation.
+where dialog branching is needed. This would be better done with some kind of node editor, for example.
+
+More settings could be added to the dialogue, e.g. display speed, color, animations, etc.
+
+The script does not use serialized objects and serialized properties to edit the dialog, which would be
+probably better, maybe faster. There doesn't seem to be any particular problem with speed though.
+Loading a dialogue into a window usually takes about 5 milliseconds (depending on the number), and the dialog 
+editing a dialogue takes about 10-40 milliseconds per dialog, depending on the number of dialogues to be edited.
+
+There is currently no maximum number of dialogs that can be entered in a dialogue field. A maximum number of fields could be set.
+number, in which case a new field would have to be created.
+
+Bugs:
+
+Some bugs may occur. Only minor bugs have been encountered so far, which should not
+affect the operation of the program.
+ 
+1. When creating a new character or folder, the folder does not immediately appear in Unity, even though it has been created. 
+
+2. If there are no characters yet, when creating a new character, the script does not immediately select the created character.
+If characters are already created and the editor is opened, the script will select the character as expected when creating a new one.

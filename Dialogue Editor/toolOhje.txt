@@ -1,0 +1,71 @@
+Kuvaus:
+
+Työkalu on dialogieditori, joka on luotu Unityn EditorWindow luokan avulla ja käyttämällä GUILayout
+ja EditorGUILayout luokkia luomaan UI-toiminnallisuudet. Editori on pakattu unitypackage muotoon.
+Pakkaukseen pääsee käsiksi menusta Assets/Import Package/Custom Package. Editori on tehty Unity-
+versiolla 2020.1.8f1, mutta Editori pitäisi toimia muillakin versioilla ja kyseisessä versiossa oli
+joitain ongelmia (Unity window layout hajoaa välillä yms., foorumeilla tullut esillesamantapaisia 
+ongelmia).
+
+Käyttö:
+
+Työkaluikkunan voi avata Tools/Dialogue Editor Menusta (Tools on Window Menun vasemmalla puolella).
+Ikkunan avatessa dialogia tai hahmoja ei ole vielä luotu. Uuden 'hahmon' voi luoda kirjoittamalla
+vasemassa reunassa olevaan tyhjään tekstikenttään ja painamalla 'NEW' nappia. Dialogia hahmolle 
+voi luoda oikeassa alakulmassa asettamalla sille tunnisteen ja painamalla "Create New Object".
+Skripti valitsee luodun hahmon ja dialogin automaattisesti.
+
+Dialogia voi muokata valitsemalla haluttu dialogi, lisäämällä sille haluttu kieli ja kirjoittamalla 
+tekstikenttään. Tekstikenttiä voi lisätä ja poistaa halutessa. Dialogin voi myös poistaa sen
+vieressä olevasta nappulasta. Hahmoja ei voida poistaa ikkunassa, sillä se on suuri muutos ja jos
+jotenkin vahingossa poistaa hahmon, voi menettää paljon dataa. Hahmon voi poistaa poistamalla hahmon
+niminen folderi Assets/Dialogue kansiossa.
+
+Tekninen toteutus:
+
+Aikaisemmin mainitusti itse ikkuna toteutettu EditorWindow, GUILayout, ja EditorGUILayout luokkien 
+avulla. Dialogin tallentaminen perustuu ScriptableObjekteihin. Luodessa dialogi hahmolle,
+luodaan instanssi DialogueObjectista (joka on ScriptableObjekti), asetetaan sille halutut tiedot, 
+ja luodaan siitä assetti hahmon nimiseen kansioon. Hahmoa luodessa tehdään vain tyhjä kansio hahmolle; 
+hahmo ei itsessään säilytä dataa. Dialogia muokatessa muokataan suoraan objektia, jolloin se asetetaan
+tallennettavaksi ja ikkunan suljetessa kutsutaan AssetDatabase.SaveAssets().
+
+Avatessa ikkunan, skripti hakee jo luodut dialogit ja tallentaa referenssit listoihin (jokaisella
+hahmolla oma lista). Käyttäjän tehdessä asioita ikkunassa, skripti muuttaa hahmo ja dialogi indeksejä
+riippuen mitä ollaan muokkaamassa. Skripti myös tummentaa valitun hahmon ja dialogin, jotta tiedetään
+muokkauksen kohde.
+
+Paranneltavaa:
+
+Hahmojen nimiä ei voida tällä hetkellä muuttaa. Lisääminen ei olisi erityisen vaikeaa, mutta
+nimen vaihtaminen voisi kestää hieman, sillä jokaisen hahmon dialogin nimi yms. pitäisi muuttaa.
+
+Dialogeja ei voi tällä hetkellä linkittää toisiinsa. Editoria ei tosin ole tarkoitettukaan tilanteeseen
+jossa tarvitaan dialogi-haarautumista. Tähän olisi parempi esim. jonkinlainen node editori.
+
+Dialogiin voisi lisätä enemmän asetuksia, esim. esittämisnopeus, väri, animaatiot yms.
+
+Skripti ei käytä serialized objects ja serialized properties dialogin muokkaamiseen, mikä olisi
+todennäköisesti parempi, ehkä nopeampi. Nopeudessa ei tosin vaikuta olevan erityisiä ongelmia.
+Dialogin loadaaminen ikkunaan kestä yleensä n. 5 millisekuntia (riippuu määrästä), ja dialogin 
+muokkaaminen kestää n. 10-40 millisekuntia per dialogi, riippuen muokattavien dialogien määrästä.
+
+Tällä hetkellä ei ole maksimimäärää jota voi kirjottaa dialogikenttään. Kentille voisi asettaa maksimi-
+määrä, jolloin pitäisi luoda uusi kenttä.
+
+Bugeja:
+
+Todennäköisesti joitain bugeja voi esiintyä. Vain pieniä bugeja esiintynyt tähän mennessä, jotka eivät
+vaikuta ohjelman toimintaan.
+ 
+1. luodessa uuden hahmon eli kansion, kansio ei heti
+näy Unityssä, vaikka se on luotu. 
+
+2. Jos hahmoja ei vielä ole, luodessa uuden hahmon, skripti ei heti
+valitse luotua hahmoa. Jos hahmoja on jo luotu ja editori avataan, skripti valitsee odotetusti hahmon
+luodessa uuden.
+
+
+
+
+
