@@ -1,8 +1,6 @@
-## Welcome to GitHub Pages
+## Welcome to my project page!
 
-You can use the [editor on GitHub](https://github.com/Aaron-Haapakorpi/Aaron-Haapakorpi.github.io/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+This page contains various projects I have contributed in during my University studies. Of the code involved in the projects, only the code that I personally worked on is posted here, along with either gifs, demos or files explaining the project.
 
 ### Markdown
 
