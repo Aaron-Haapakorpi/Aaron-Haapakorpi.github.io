@@ -1,0 +1,5 @@
+This is a short student competition for creating a Rock Paper Scissors bot during a lesson in Metropolia university.
+My implementation of a rock paper scissors bot capable of competing with non random strategies is in the file chain_reaction.h. The base given to each
+student is in MY_BOT.h. An enemy bot for testing against is in gramma.h. The script runs a tournament pitting the bots against each other. The tournament has been modified to run 150 iterations of 
+rock paper scissor matches where the first to 1000 wins.
+

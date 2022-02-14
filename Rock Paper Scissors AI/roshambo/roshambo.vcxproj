@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B0A5CD39-62C9-4EC9-AF29-05F108D36B7F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>roshambo</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4715;4996</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4715;4996</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <StackReserveSize>134217728</StackReserveSize>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="tour.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="bots\always_change.h" />
+    <ClInclude Include="bots\always_paper.h" />
+    <ClInclude Include="bots\always_rock.h" />
+    <ClInclude Include="bots\always_scissors.h" />
+    <ClInclude Include="bots\beat_earlier.h" />
+    <ClInclude Include="bots\bob.h" />
+    <ClInclude Include="bots\boten_anna.h" />
+    <ClInclude Include="bots\botzilla.h" />
+    <ClInclude Include="bots\caveman.h" />
+    <ClInclude Include="bots\chain_reaction.h" />
+    <ClInclude Include="bots\destroyer.h" />
+    <ClInclude Include="bots\dumbo.h" />
+    <ClInclude Include="bots\dwayne.h" />
+    <ClInclude Include="bots\good_taste.h" />
+    <ClInclude Include="bots\gramma.h" />
+    <ClInclude Include="bots\hasbeen.h" />
+    <ClInclude Include="bots\jankenbot.h" />
+    <ClInclude Include="bots\jbotti.h" />
+    <ClInclude Include="bots\jere.h" />
+    <ClInclude Include="bots\JonniWebTM.h" />
+    <ClInclude Include="bots\k-rauta.h" />
+    <ClInclude Include="bots\kai_kai.h" />
+    <ClInclude Include="bots\lattebot.h" />
+    <ClInclude Include="bots\mersenne.h" />
+    <ClInclude Include="bots\mielivalta.h" />
+    <ClInclude Include="bots\mrkps.h" />
+    <ClInclude Include="bots\MY_BOT.h" />
+    <ClInclude Include="bots\pulverizer.h" />
+    <ClInclude Include="bots\punakone.h" />
+    <ClInclude Include="bots\quickbot.h" />
+    <ClInclude Include="bots\random.h" />
+    <ClInclude Include="bots\roshamBot.h" />
+    <ClInclude Include="bots\santeri.h" />
+    <ClInclude Include="bots\syntax_error.h" />
+    <ClInclude Include="bots\teuvo.h" />
+    <ClInclude Include="bots\throwbot.h" />
+    <ClInclude Include="bots\tuomas.h" />
+    <ClInclude Include="bots\ultimate_winner.h" />
+    <ClInclude Include="bots\wide_putin.h" />
+    <ClInclude Include="bots\worst.h" />
+    <ClInclude Include="bot_interface.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

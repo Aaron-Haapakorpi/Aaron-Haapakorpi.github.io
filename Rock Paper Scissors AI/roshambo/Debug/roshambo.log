@@ -1,0 +1,5 @@
+﻿  tour.cpp
+j:\new folder\roshambo_turnaus\roshambo\roshambo\bots\chain_reaction.h(40): warning C4244: 'argument': conversion from 'double' to 'const unsigned int', possible loss of data
+j:\new folder\roshambo_turnaus\roshambo\roshambo\bots\jbotti.h : warning C4819: The file contains a character that cannot be represented in the current code page (932). Save the file in Unicode format to prevent data loss
+j:\new folder\roshambo_turnaus\roshambo\roshambo\bots\gramma.h(67): warning C4018: '>': signed/unsigned mismatch
+  roshambo.vcxproj -> J:\New folder\roshambo_turnaus\roshambo\Debug\roshambo.exe

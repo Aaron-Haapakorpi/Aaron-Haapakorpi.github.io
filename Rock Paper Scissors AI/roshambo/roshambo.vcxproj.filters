@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="tour.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="bot_interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\always_scissors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\always_paper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\always_rock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\random.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\beat_earlier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\always_change.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\MY_BOT.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\wide_putin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\kai_kai.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\caveman.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\lattebot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\destroyer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\jankenbot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\k-rauta.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\ultimate_winner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\chain_reaction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\throwbot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\bob.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\good_taste.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\jbotti.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\JonniWebTM.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\quickbot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\boten_anna.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\botzilla.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\mielivalta.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\mersenne.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\santeri.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\teuvo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\tuomas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\gramma.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\punakone.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\jere.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\worst.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\dumbo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\syntax_error.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\dwayne.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\pulverizer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\hasbeen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\roshamBot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bots\mrkps.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
