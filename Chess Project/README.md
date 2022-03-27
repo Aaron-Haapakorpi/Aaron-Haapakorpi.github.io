@@ -1,0 +1,1 @@
+![](chessgif.gif)
